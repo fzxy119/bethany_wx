@@ -43,7 +43,9 @@
     <profile>
       <id>dev</id>
       <properties>
-        <package.environment>conf_dev</package.environment>
+        <b.jdbc.url>jdbc:mysql://127.0.0.1:3306/bethany_db?useUnicode=true&amp;characterEncoding=utf-8</b.jdbc.url>
+        <b.jdbc.username>root</b.jdbc.username>
+        <b.jdbc.password>123</b.jdbc.password>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -52,13 +54,17 @@
     <profile>
       <id>test</id>
       <properties>
-        <package.environment>conf_test</package.environment>
+        <b.jdbc.url>jdbc:mysql://127.0.0.1:3306/bethany_db?useUnicode=true&amp;characterEncoding=utf-8</b.jdbc.url>
+        <b.jdbc.username>root</b.jdbc.username>
+        <b.jdbc.password>123</b.jdbc.password>
       </properties>
     </profile>
     <profile>
       <id>prod</id>
       <properties>
-        <package.environment>conf_prod</package.environment>
+        <b.jdbc.url>jdbc:mysql://127.0.0.1:3306/bethany_db?useUnicode=true&amp;characterEncoding=utf-8</b.jdbc.url>
+        <b.jdbc.username>root</b.jdbc.username>
+        <b.jdbc.password>123</b.jdbc.password>
       </properties>
     </profile>
   </profiles>
@@ -411,6 +417,10 @@
       <resource>
         <targetPath>${basedir}/target/classes</targetPath>
         <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>src/main/resources/mappers</exclude>
+          <exclude>src/main/resources/template</exclude>
+        </excludes>
         <filtering>true</filtering>
       </resource>
     </resources>
