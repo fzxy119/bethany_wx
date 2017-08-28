@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bethany.dao.TgroupMapper" >
+  <resultMap id="BaseResultMap" type="com.bethany.model.Tgroup" >
+    <id column="group" property="group" jdbcType="VARCHAR" />
+    <id column="groupItem" property="groupitem" jdbcType="VARCHAR" />
+    <result column="itemCode" property="itemcode" jdbcType="VARCHAR" />
+    <result column="itemValue" property="itemvalue" jdbcType="VARCHAR" />
+    <result column="itemDes" property="itemdes" jdbcType="VARCHAR" />
+    <result column="itemSort" property="itemsort" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    group, groupItem, itemCode, itemValue, itemDes, itemSort, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_group
+    where group = #{group,jdbcType=VARCHAR}
+      and groupItem = #{groupitem,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from t_group
+    where group = #{group,jdbcType=VARCHAR}
+      and groupItem = #{groupitem,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bethany.model.Tgroup" >
+    insert into t_group (group, groupItem, itemCode, 
+      itemValue, itemDes, itemSort, 
+      status)
+    values (#{group,jdbcType=VARCHAR}, #{groupitem,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, 
+      #{itemvalue,jdbcType=VARCHAR}, #{itemdes,jdbcType=VARCHAR}, #{itemsort,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bethany.model.Tgroup" >
+    insert into t_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="group != null" >
+        group,
+      </if>
+      <if test="groupitem != null" >
+        groupItem,
+      </if>
+      <if test="itemcode != null" >
+        itemCode,
+      </if>
+      <if test="itemvalue != null" >
+        itemValue,
+      </if>
+      <if test="itemdes != null" >
+        itemDes,
+      </if>
+      <if test="itemsort != null" >
+        itemSort,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="group != null" >
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="groupitem != null" >
+        #{groupitem,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null" >
+        #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemvalue != null" >
+        #{itemvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="itemdes != null" >
+        #{itemdes,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsort != null" >
+        #{itemsort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bethany.model.Tgroup" >
+    update t_group
+    <set >
+      <if test="itemcode != null" >
+        itemCode = #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemvalue != null" >
+        itemValue = #{itemvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="itemdes != null" >
+        itemDes = #{itemdes,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsort != null" >
+        itemSort = #{itemsort,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where group = #{group,jdbcType=VARCHAR}
+      and groupItem = #{groupitem,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bethany.model.Tgroup" >
+    update t_group
+    set itemCode = #{itemcode,jdbcType=VARCHAR},
+      itemValue = #{itemvalue,jdbcType=VARCHAR},
+      itemDes = #{itemdes,jdbcType=VARCHAR},
+      itemSort = #{itemsort,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where group = #{group,jdbcType=VARCHAR}
+      and groupItem = #{groupitem,jdbcType=VARCHAR}
+  </update>
+</mapper>

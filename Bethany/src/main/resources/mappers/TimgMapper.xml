@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bethany.dao.TimgMapper" >
+  <resultMap id="BaseResultMap" type="com.bethany.model.Timg" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="imgTitle" property="imgtitle" jdbcType="VARCHAR" />
+    <result column="imgType" property="imgtype" jdbcType="VARCHAR" />
+    <result column="imgPath" property="imgpath" jdbcType="VARCHAR" />
+    <result column="insDate" property="insdate" jdbcType="TIMESTAMP" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="sortV" property="sortv" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, imgTitle, imgType, imgPath, insDate, userId, sortV, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_img
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_img
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bethany.model.Timg" >
+    insert into t_img (ID, imgTitle, imgType, 
+      imgPath, insDate, userId, 
+      sortV, status)
+    values (#{id,jdbcType=VARCHAR}, #{imgtitle,jdbcType=VARCHAR}, #{imgtype,jdbcType=VARCHAR}, 
+      #{imgpath,jdbcType=VARCHAR}, #{insdate,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR}, 
+      #{sortv,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bethany.model.Timg" >
+    insert into t_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="imgtitle != null" >
+        imgTitle,
+      </if>
+      <if test="imgtype != null" >
+        imgType,
+      </if>
+      <if test="imgpath != null" >
+        imgPath,
+      </if>
+      <if test="insdate != null" >
+        insDate,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="sortv != null" >
+        sortV,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtitle != null" >
+        #{imgtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtype != null" >
+        #{imgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpath != null" >
+        #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="insdate != null" >
+        #{insdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="sortv != null" >
+        #{sortv,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bethany.model.Timg" >
+    update t_img
+    <set >
+      <if test="imgtitle != null" >
+        imgTitle = #{imgtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtype != null" >
+        imgType = #{imgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpath != null" >
+        imgPath = #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="insdate != null" >
+        insDate = #{insdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="sortv != null" >
+        sortV = #{sortv,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bethany.model.Timg" >
+    update t_img
+    set imgTitle = #{imgtitle,jdbcType=VARCHAR},
+      imgType = #{imgtype,jdbcType=VARCHAR},
+      imgPath = #{imgpath,jdbcType=VARCHAR},
+      insDate = #{insdate,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=VARCHAR},
+      sortV = #{sortv,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

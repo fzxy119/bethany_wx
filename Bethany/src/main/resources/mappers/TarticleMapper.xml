@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bethany.dao.TarticleMapper" >
+  <resultMap id="BaseResultMap" type="com.bethany.model.Tarticle" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="atitle" property="atitle" jdbcType="VARCHAR" />
+    <result column="atype" property="atype" jdbcType="VARCHAR" />
+    <result column="insDate" property="insdate" jdbcType="TIMESTAMP" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bethany.model.Tarticle" extends="BaseResultMap" >
+    <result column="aContent" property="acontent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, atitle, atype, insDate, userid, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    aContent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_article
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_article
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bethany.model.Tarticle" >
+    insert into t_article (id, atitle, atype, 
+      insDate, userid, status, 
+      aContent)
+    values (#{id,jdbcType=VARCHAR}, #{atitle,jdbcType=VARCHAR}, #{atype,jdbcType=VARCHAR}, 
+      #{insdate,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{acontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bethany.model.Tarticle" >
+    insert into t_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="atitle != null" >
+        atitle,
+      </if>
+      <if test="atype != null" >
+        atype,
+      </if>
+      <if test="insdate != null" >
+        insDate,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="acontent != null" >
+        aContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="atitle != null" >
+        #{atitle,jdbcType=VARCHAR},
+      </if>
+      <if test="atype != null" >
+        #{atype,jdbcType=VARCHAR},
+      </if>
+      <if test="insdate != null" >
+        #{insdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="acontent != null" >
+        #{acontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bethany.model.Tarticle" >
+    update t_article
+    <set >
+      <if test="atitle != null" >
+        atitle = #{atitle,jdbcType=VARCHAR},
+      </if>
+      <if test="atype != null" >
+        atype = #{atype,jdbcType=VARCHAR},
+      </if>
+      <if test="insdate != null" >
+        insDate = #{insdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="acontent != null" >
+        aContent = #{acontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bethany.model.Tarticle" >
+    update t_article
+    set atitle = #{atitle,jdbcType=VARCHAR},
+      atype = #{atype,jdbcType=VARCHAR},
+      insDate = #{insdate,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      aContent = #{acontent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bethany.model.Tarticle" >
+    update t_article
+    set atitle = #{atitle,jdbcType=VARCHAR},
+      atype = #{atype,jdbcType=VARCHAR},
+      insDate = #{insdate,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
