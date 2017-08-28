@@ -38,7 +38,6 @@
     <depositPay.version>1.0</depositPay.version>
     <service.version>1.0</service.version>
   </properties>
-
   
   <profiles>
     <profile>
